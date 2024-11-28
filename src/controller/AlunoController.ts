@@ -29,7 +29,6 @@ export class AlunoController extends Aluno {
         try {
             const listaDeAlunos = await Aluno.listagemalunos();
             
-            
             return res.status(200).json(listaDeAlunos);
         } catch (error) {
             console.log('Erro ao acessar listagem de carros');
@@ -51,6 +50,7 @@ export class AlunoController extends Aluno {
                                         AlunoRecebido.email,
                                         AlunoRecebido.celular);
 
+                                     
             // Chama a função de cadastro passando o objeto como parâmetro
             const repostaClasse = await Aluno.cadastroAluno(novoAluno);
 

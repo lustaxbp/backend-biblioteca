@@ -7,6 +7,7 @@ interface EmprestimoDTO {
     id_aluno: number;
     dataEmprestimo: Date;
     dataDevolução:Date;
+    statusEmprestimo:string;
 }
 
 /**
@@ -36,4 +37,38 @@ export class EmprestimoController extends Emprestimo {
         
     }
 
+    static async novo (req: Request, res: Response): Promise<any> {
+        try {
+            // recuperando informações do corpo da requisição e colocando em um objeto da interface AlunoDTO
+            const empretimoRecebido: EmprestimoDTO = req.body;
+
+            // instanciando um objeto do tipo Emprestimo com as informações recebidas
+            const novoEmprestimo = new Emprestimo(
+                                        empretimoRecebido.id_aluno, 
+                                        empretimoRecebido.id_livro, 
+                                        empretimoRecebido.dataEmprestimo,
+                                        empretimoRecebido.dataDevolução,
+                                        empretimoRecebido.statusEmprestimo
+                                        );
+
+            // Chama a função de cadastro passando o objeto como parâmetro
+            const repostaClasse = await Emprestimo.cadastroemprestimo(novoEmprestimo);
+
+            // verifica a resposta da função
+            if(repostaClasse) {
+                // retornar uma mensagem de sucesso
+                return res.status(200).json({ mensagem: "emprestimo cadastrado com sucesso!" });
+            } else {
+                // retorno uma mensagem de erro
+                return res.status(400).json({ mensagem: "Erro ao cadastra o Emprestimo. Entre em contato com o administrador do sistema."})
+            }
+            
+        } catch (error) {
+            // lança uma mensagem de erro no console
+            console.log(`Erro ao cadastrar um Aluno. ${error}`);
+
+            // retorna uma mensagem de erro há quem chamou a mensagem
+            return res.status(400).json({ mensagem: "Não foi possível cadastrar o Aluno. Entre em contato com o administrador do sistema." });
+        }
+    }
 }

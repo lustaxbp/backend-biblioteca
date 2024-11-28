@@ -317,8 +317,8 @@ export class Livro {    /* Atributos */
     static async cadastroLivro(livro: Livro): Promise<boolean> {
         try {
             // query para fazer insert de um livro no banco de dados
-            const queryInsertLivro = `INSERT INTO Livro * (titulo,autor,editora,anoPublicacao,isbn,
-         quantTotal,quantDisponivel,valorAquisicao,statusLivroEmprestado)
+            const queryInsertLivro = `INSERT INTO Livro (titulo,autor,editora,ano_publicacao,isbn,
+         quant_total,quant_disponivel,valor_aquisicao,status_livro_emprestado)
                                 VALUES
                                 ('${livro.getTitulo()}', 
                                 '${livro.getAutor()}', 
