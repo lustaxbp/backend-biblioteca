@@ -66,6 +66,15 @@ export class Aluno {
      * Atribui um valor ao identificador do Aluno
      * @param idAluno novo identificado do Aluno
      */
+   
+    /**
+     * Atribui um valor ao identificador do Aluno
+     * @param idAluno novo identificado do Aluno
+     */
+    public setIdAluno(idAluno: number): void {
+        this.idAluno = idAluno;
+   
+    }
     public setRa(ra: string): void {
         this.ra = ra;
     }
@@ -73,15 +82,7 @@ export class Aluno {
     public getRa(): string {
         return this.ra;
     }
-
-    /**
-     * Atribui um valor ao identificador do Aluno
-     * @param idAluno novo identificado do Aluno
-     */
-    public setIdAluno(idAluno: number): void {
-        this.idAluno = idAluno;
-    }
-
+    
     /**
      * Retorna a marca do Aluno.
      *
